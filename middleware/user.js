@@ -1,23 +1,29 @@
 const users = require("../users/userDb");
 
-function validateUserId(req, res, next) {
-    users.getById(req.params.id)
-        .then((user) => {
-            if(user){
-                req.user = user;
-            } else{
-                res.status(400).json({message: "invalid user id"});
-            }
-        })
-        .catch(next)
-}
+function validateUserId() {
+    return async (req, res, next) => {
+        try {
+            req.user = await users.getById(req.params.id);
+            //if(!user){throw(404)}
+            next();
+        } catch (err) {
+            res.status(400).json({ message: "invalid user id" });
+        }
 
-function validateUser(req, re, next) {
-    if(!req.body.name){
-        res.status(400).json({message: "missing requiered name field"})
+        next();
+
     }
 
-    next()
+}
+
+function validateUser() {
+    return (req, res, next) => {
+        if (!req.body.name) {
+            res.status(400).json({ message: "missing requiered name field" })
+        }
+
+        next()
+    }
 }
 
 module.exports = {
