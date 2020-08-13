@@ -1,8 +1,10 @@
-function logger(req, res, next) {
-    const time = new Date().toISOString()
-    console.log(`${time} ${req.url}`)
+module.exports = () => {
+	return (req, res, next) => {
+		const time = new Date().toISOString()
+		console.log(`${time} ${req.url}`)
 
-    next()
+		// we're done here, move on to the next piece of middleware in the stack
+		// (which is the route handler)
+		next()
+	}
 }
-
-module.exports = {logger};
