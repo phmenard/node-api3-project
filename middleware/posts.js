@@ -1,4 +1,4 @@
-const users = require("../posts/postDb");
+const posts = require("../posts/postDb");
 
 function validatePost() {
     return (req, res, next) => {
@@ -11,6 +11,20 @@ function validatePost() {
         next();
     }
         
+
+ function validatePostId() {
+     return async (req, res, next) => {
+        try {
+            const post = await posts.getById(req.params.id)
+            if(post) {
+                req.post = post;
+            }
+            next();
+        }catch(err){
+            next(err);
+        }
+     }
+ }   
     
 
     /*next()
