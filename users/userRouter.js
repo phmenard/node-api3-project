@@ -76,7 +76,7 @@ router.delete('/:id', validateUserId(), async (req, res, next) => {
 
 });
 
-router.put('/:id', validateUser(), async (req, res, next) => {
+router.put('/:id',  async (req, res, next) => {
   // do your magic!
   try {
     const user = await users.update(req.params.id, req.body);
