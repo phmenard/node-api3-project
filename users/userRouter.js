@@ -11,7 +11,7 @@ router.post('/', validateUser(), async (req, res, next) => {
   try {
     const user = await users.insert(req.body);
     res.status(200).json(user);
-    next();
+    //next();
   } catch (err) {
     next(err);
   }
@@ -28,7 +28,7 @@ router.post('/:id/posts', validatePost(), async (req, res, next) => {
 
     const post = await posts.insert(newPost);
     res.status(201).json(post);
-    next();
+    //next();
   } catch (err) {
     next(err);
   }
@@ -40,7 +40,7 @@ router.get('/', async (req, res, next) => {
   try {
     const allUsers = await users.get();
     res.status(200).json(allUsers);
-    next();
+    //next();
   } catch (err) {
     next(err);
   }
@@ -57,7 +57,7 @@ router.get('/:id/posts', validateUserId(), async (req, res, next) => {
   try {
     const posts = await users.getUserPosts(req.params.id);
     res.status(200).json(posts);
-    next();
+    //next();
   } catch (err) {
     next(err);
     //res.status(500).json({message: "Something bad happen."})
@@ -79,9 +79,9 @@ router.delete('/:id', validateUserId(), async (req, res, next) => {
 router.put('/:id',  async (req, res, next) => {
   // do your magic!
   try {
-    const user = await users.update(req.params.id, req.body);
+    const user = await users.update(req.params.id, req.body); /// WHY !!!!!!!!!
     res.status(200).json(user);
-    next();
+    //next();
   } catch (err) {
     next(err);
   }
