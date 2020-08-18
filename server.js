@@ -7,7 +7,7 @@ const postsRouter = require("./posts/postRouter");
 
 
 const server = express();
-const port = 4000;
+const port = process.env.PORT || 3000
 
 server.use(express.json());
 
