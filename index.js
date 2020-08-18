@@ -18,12 +18,12 @@ server.use(postsRouter);
 server.use(logger);
 
 // Fall back
-server.use((err, req, res, next) => {
+/*server.use((err, req, res, next) => {
 	console.log(err)
 	res.status(500).json({
 		message: "Something went wrong",
 	})
-})
+})*/
 
 
 server.listen(port, () =>{
