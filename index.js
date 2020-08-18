@@ -17,6 +17,7 @@ server.use(postsRouter);
 
 server.use(logger);
 
+// Fall back
 server.use((err, req, res, next) => {
 	console.log(err)
 	res.status(500).json({
